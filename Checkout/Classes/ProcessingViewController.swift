@@ -150,8 +150,10 @@ class ProcessingViewController: UIViewController {
                         processingClosure(result, nil)
                     }
                 }
-                
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
             }
             
             task.resume()
