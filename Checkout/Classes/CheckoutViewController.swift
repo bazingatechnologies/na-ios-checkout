@@ -39,26 +39,26 @@ open class CheckoutViewController: UIViewController {
     
     // MARK: - Public properties
     
-    open var amount: NSDecimalNumber = NSDecimalNumber(value: 1.0 as Double)
-    open var currencyCode: String = "CAD"
-    open var name: String?
-    open var image: UIImage?
-    open var purchaseDescription: String?
+    @objc open var amount: NSDecimalNumber = NSDecimalNumber(value: 1.0 as Double)
+    @objc open var currencyCode: String = "CAD"
+    @objc open var name: String?
+    @objc open var image: UIImage?
+    @objc open var purchaseDescription: String?
     
-    open var shippingAddressRequired: Bool = true
-    open var billingAddressRequired: Bool = true
-    open var shippingAddress: Address?
-    open var billingAddress: Address?
+    @objc open var shippingAddressRequired: Bool = true
+    @objc open var billingAddressRequired: Bool = true
+    @objc open var shippingAddress: Address?
+    @objc open var billingAddress: Address?
     
-    open var primaryColor: UIColor = Settings.primaryColor {
+    @objc open var primaryColor: UIColor = Settings.primaryColor {
         didSet {
             Settings.primaryColor = primaryColor
         }
     }
     
-    open var processingClosure: ((_ result: Dictionary<String, AnyObject>?, _ error: NSError?) -> Void)?
+    @objc open var processingClosure: ((_ result: Dictionary<String, AnyObject>?, _ error: NSError?) -> Void)?
     
-    open var tokenRequestTimeoutSeconds = Settings.tokenRequestTimeout {
+    @objc open var tokenRequestTimeoutSeconds = Settings.tokenRequestTimeout {
         didSet {
             Settings.tokenRequestTimeout = tokenRequestTimeoutSeconds
         }

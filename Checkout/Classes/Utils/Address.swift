@@ -13,11 +13,11 @@ public enum AddressType {
     case billing
 }
 
-public struct Address {
-    var name: String = ""
-    var street: String = ""
-    var city: String = ""
-    var province: String = ""
-    var postalCode: String = ""
-    var country: String = ""
+public class Address : NSObject {
+    public var name: String = ""
+    public var street: String = ""
+    public var city: String = ""
+    public var province: String = ""
+    public var postalCode: String = ""
+    public var country: String = ""
 }
