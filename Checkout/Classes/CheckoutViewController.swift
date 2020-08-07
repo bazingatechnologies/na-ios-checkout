@@ -128,7 +128,7 @@ open class CheckoutViewController: UIViewController {
         if let navController = segue.destination as? UINavigationController, segue.identifier == "navController" {
             if !self.billingAddressRequired && !self.shippingAddressRequired {
                 // Re-jig the nav controller to have a PaymentViewController as its root
-                let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
+                let storyboard = self.storyboard!
                 if let paymentController = storyboard.instantiateViewController(withIdentifier: "PaymentViewController") as? PaymentViewController {
                     navController.viewControllers = [paymentController]
                 }
