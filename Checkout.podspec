@@ -2,7 +2,7 @@
 Pod::Spec.new do |spec|
 
   spec.name     = 'CheckoutBazinga'
-  spec.version  = '0.5.0'
+  spec.version  = '0.6.0'
   spec.license  = 'MIT'
   spec.summary  = 'A delightful Payments UI framework to be helpful with Bambora related development.'
   spec.homepage = 'http://developer.na.bambora.com'
