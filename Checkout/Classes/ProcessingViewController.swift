@@ -65,7 +65,7 @@ class ProcessingViewController: UIViewController {
             
             let session = URLSession(configuration: urlconfig, delegate: self, delegateQueue: nil)
             let request = NSMutableURLRequest(url: url)
-            
+
             var data: Data?
             
             do {
@@ -83,81 +83,134 @@ class ProcessingViewController: UIViewController {
             request.httpMethod = "POST"
             request.httpBody = data
             
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            ProcessingViewController.makeNetworkActivityIndicator(visible: true)
             
             // Force a 2 second sleep to ensure UX as the tokenization call alone is pretty fast
             Thread.sleep(forTimeInterval: 2)
-            
-            let task = session.dataTask(with: request as URLRequest) { data, response, err in
-                
-                var statusCode = 200
-                var error: Error? = err
-                
-                if let httpResponse = response as? HTTPURLResponse {
-                    statusCode = httpResponse.statusCode
-                    if statusCode != 200 {
-                        print("HTTP Error \(statusCode) when getting token.")
-                        let userInfo = [
-                            NSLocalizedDescriptionKey: HTTPURLResponse.localizedString(forStatusCode: statusCode)
-                        ]
-                        error = NSError(domain: "Tokenization Request Error", code: statusCode, userInfo: userInfo)
-                    }
-                }
 
-                var result = Dictionary<String, AnyObject>()
-                
-                if let address = State.sharedInstance.shippingAddress {
-                    var shippingInfo = Dictionary<String, String>()
-                    shippingInfo["name"] = address.name
-                    shippingInfo["address_line1"] = address.street
-                    shippingInfo["postal_code"] = address.postalCode
-                    shippingInfo["city"] = address.city
-                    shippingInfo["province"] = address.province
-                    shippingInfo["country"] = address.country
-                    result["shippingAddress"] = shippingInfo as AnyObject?
-                }
-                
-                if let address = State.sharedInstance.billingAddress {
-                    var billingInfo = Dictionary<String, String>()
-                    billingInfo["name"] = address.name
-                    billingInfo["address_line1"] = address.street
-                    billingInfo["postal_code"] = address.postalCode
-                    billingInfo["city"] = address.city
-                    billingInfo["province"] = address.province
-                    billingInfo["country"] = address.country
-                    result["billingAddress"] = billingInfo as AnyObject?
-                }
-                
-                if error != nil {
-                    if let processingClosure = State.sharedInstance.processingClosure {
-                        processingClosure((result.count > 0 ? result : nil), error as NSError?)
-                    }
-                }
-                else {
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? Dictionary<String, AnyObject>
-                        
-                        if let json = json, let token = json["token"] as? String {
-                            var cardInfo = Dictionary<String, String>()
-                            cardInfo["code"] = token
-                            cardInfo["name"] = (self.name == nil ? "" : self.name)
-                            cardInfo["email"] = (self.email == nil ? "" : self.email)
-                            result["cardInfo"] = cardInfo as AnyObject?
+            weak var weakSelf = self
+            let trustTokenTask = self.createToken(session, request as URLRequest) { (trustTokenInfo: Dictionary<String, AnyObject>?, error: NSError?) in
+
+                if let error = error {
+                    ProcessingViewController.processFailed(error: error)
+                } else if let strongSelf = weakSelf, let trustToken = trustTokenInfo?["cardInfo"]?["code"] as? String {
+                    let block = { (surchargeTokenInfo: Dictionary<String, AnyObject>?, error: NSError?) in
+                        if let error = error {
+                            ProcessingViewController.processFailed(error: error)
+                        } else {
+                            if let surchargeToken = surchargeTokenInfo?["cardInfo"]?["code"] as? String,
+                               let name = surchargeTokenInfo?["cardInfo"]?["name"] as? String,
+                               let email = surchargeTokenInfo?["cardInfo"]?["email"] as? String {
+                                var cardInfo = Dictionary<String, AnyObject>()
+                                cardInfo["email"] = email as AnyObject
+                                cardInfo["nameOnCard"] = name as AnyObject
+                                cardInfo["surchargeToken"] = surchargeToken as AnyObject
+                                cardInfo["trustToken"] = trustToken as AnyObject
+                                if let processingClosure = State.sharedInstance.processingClosure {
+                                    processingClosure(cardInfo, nil)
+                                }
+                            }
                         }
-                    } catch {}
-                    
-                    if let processingClosure = State.sharedInstance.processingClosure {
-                        processingClosure(result, nil)
                     }
-                }
-
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    let surchargeTokenTask = strongSelf.createToken(session, request as URLRequest, block)
+                    surchargeTokenTask.resume()
+                } else {
+                    ProcessingViewController.processFailed(error: nil)
                 }
             }
             
-            task.resume()
+            trustTokenTask.resume()
         }
+    }
+
+    fileprivate class func processFailed(error: NSError?) -> Void {
+        if let processingClosure = State.sharedInstance.processingClosure {
+            if let error = error {
+                processingClosure(nil, error)
+            } else {
+                processingClosure(nil, ProcessingViewController.makeCommonError())
+            }
+        }
+        ProcessingViewController.makeNetworkActivityIndicator(visible: false)
+    }
+
+    fileprivate class func makeCommonError() -> NSError {
+        return NSError(domain: "There was a problem with the service", code: -1, userInfo: nil)
+    }
+
+    fileprivate class func makeNetworkActivityIndicator(visible: Bool) -> Void {
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = visible
+        }
+    }
+
+    fileprivate func createToken(_ session: URLSession, _ request: URLRequest, _ completion: ((_ result: Dictionary<String, AnyObject>?, _ error: NSError?) -> Void)?) -> URLSessionDataTask {
+
+        let task = session.dataTask(with: request) { data, response, err in
+
+            var statusCode = 200
+            var error: Error? = err
+
+            if let httpResponse = response as? HTTPURLResponse {
+                statusCode = httpResponse.statusCode
+                if statusCode != 200 {
+                    print("HTTP Error \(statusCode) when getting token.")
+                    let userInfo = [
+                        NSLocalizedDescriptionKey: HTTPURLResponse.localizedString(forStatusCode: statusCode)
+                    ]
+                    error = NSError(domain: "Tokenization Request Error", code: statusCode, userInfo: userInfo)
+                }
+            }
+
+            var result = Dictionary<String, AnyObject>()
+
+            if let address = State.sharedInstance.shippingAddress {
+                var shippingInfo = Dictionary<String, String>()
+                shippingInfo["name"] = address.name
+                shippingInfo["address_line1"] = address.street
+                shippingInfo["postal_code"] = address.postalCode
+                shippingInfo["city"] = address.city
+                shippingInfo["province"] = address.province
+                shippingInfo["country"] = address.country
+                result["shippingAddress"] = shippingInfo as AnyObject?
+            }
+
+            if let address = State.sharedInstance.billingAddress {
+                var billingInfo = Dictionary<String, String>()
+                billingInfo["name"] = address.name
+                billingInfo["address_line1"] = address.street
+                billingInfo["postal_code"] = address.postalCode
+                billingInfo["city"] = address.city
+                billingInfo["province"] = address.province
+                billingInfo["country"] = address.country
+                result["billingAddress"] = billingInfo as AnyObject?
+            }
+
+            if error != nil {
+                if let completion = completion {
+                    completion((result.count > 0 ? result : nil), error as NSError?)
+                }
+            }
+            else {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? Dictionary<String, AnyObject>
+
+                    if let json = json, let token = json["token"] as? String {
+                        var cardInfo = Dictionary<String, String>()
+                        cardInfo["code"] = token
+                        cardInfo["name"] = (self.name == nil ? "" : self.name)
+                        cardInfo["email"] = (self.email == nil ? "" : self.email)
+                        result["cardInfo"] = cardInfo as AnyObject?
+                    }
+                } catch {}
+
+                if let completion = completion {
+                    completion(result, nil)
+                }
+            }
+        }
+
+        return task
     }
 }
 

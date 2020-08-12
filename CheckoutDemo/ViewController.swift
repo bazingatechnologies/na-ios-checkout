@@ -45,39 +45,43 @@ class ViewController: UIViewController {
             //controller.tokenRequestTimeoutSeconds = 6     // default: 6
             
             controller.processingClosure = { (result: Dictionary<String, AnyObject>?, error: NSError?) -> Void in
-                if let error = error {
-                    let msg  = "error (\(error.code)): \(error.localizedDescription)"
-                    print(msg)
-                    self.statusLabel.text = msg
-                    self.statusLabel.textColor = UIColor.red
-                }
-                else if let result = result {
-                    if let cardInfo = result["cardInfo"] as? Dictionary<String, String>, let token = cardInfo["code"] as String? {
-                        print("cardInfo: \(cardInfo)")
-                        self.statusLabel.text = "token: \(token)"
-                        self.statusLabel.textColor = UIColor.black
+
+                DispatchQueue.main.async {
+                    if let error = error {
+                        let msg  = "error (\(error.code)): \(error.localizedDescription)"
+                        print(msg)
+                        self.statusLabel.text = msg
+                        self.statusLabel.textColor = UIColor.red
+                    }
+                    else if let result = result {
+                        if let trustToken = result["trustToken"] as? String, let surchargeToken = result["surchargeToken"] as? String {
+                            let msg = "trustToken: \(trustToken) surchargeToken: \(surchargeToken)"
+                            print(msg)
+                            self.statusLabel.text = msg
+                            self.statusLabel.textColor = UIColor.black
+                        }
+                        else {
+                            self.statusLabel.text = "No Token!"
+                            self.statusLabel.textColor = UIColor.red
+                        }
+                        
+                        if let shippingInfo = result["shippingAddress"] as? Dictionary<String, String> {
+                            print("shipping: \(shippingInfo)")
+                        }
+                        
+                        if let billingInfo = result["billingAddress"] as? Dictionary<String, String> {
+                            print("billing: \(billingInfo)")
+                        }
                     }
                     else {
-                        self.statusLabel.text = "No Token!"
+                        let msg = "Yikes! No error and no result data!"
+                        self.statusLabel.text = msg
                         self.statusLabel.textColor = UIColor.red
                     }
                     
-                    if let shippingInfo = result["shippingAddress"] as? Dictionary<String, String> {
-                        print("shipping: \(shippingInfo)")
-                    }
-                    
-                    if let billingInfo = result["billingAddress"] as? Dictionary<String, String> {
-                        print("billing: \(billingInfo)")
-                    }
+                    self.dismiss(animated: true, completion: nil)
+                    self.view.setNeedsLayout() // Needed in case of view orientation change
                 }
-                else {
-                    let msg = "Yikes! No error and no result data!"
-                    self.statusLabel.text = msg
-                    self.statusLabel.textColor = UIColor.red
-                }
-                
-                self.dismiss(animated: true, completion: nil)
-                self.view.setNeedsLayout() // Needed in case of view orientation change
             }
             
             self.present(controller, animated: true, completion: nil)
