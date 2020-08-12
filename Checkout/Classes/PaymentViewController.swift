@@ -416,6 +416,15 @@ class PaymentViewController: UITableViewController {
             else if ccValidator.validate(cardNumber, State.sharedInstance.brands) == false {
                 let msg = NSLocalizedString("Please enter a valid credit card number.", comment: "Validation statement used when credit card number entered is invalid.")
                 errorMessages.append(msg)
+                if let brands = State.sharedInstance.brands, brands.count > 0 {
+                    let last = brands.last!
+                    let rest = brands.dropLast()
+                    var ccMsg = last
+                    if rest.count > 0 {
+                        ccMsg = "\(rest.joined(separator: ",")) and \(last)"
+                    }
+                    errorMessages.append("We only accept \(ccMsg).")
+                }
                 cardInvalid = true
             }
             
