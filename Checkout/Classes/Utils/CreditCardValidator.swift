@@ -109,7 +109,10 @@ class CreditCardValidator {
 
     fileprivate func isValidCardType(_ cardType: CardType, _ validCardTypes: Array<String>?) -> Bool {
         if let allValidCardTypes = validCardTypes {
-            return allValidCardTypes.contains(cardType.name)
+            let loweredCardTypes = allValidCardTypes.map { (s: String) -> String in
+                return s.lowercased()
+            }
+            return loweredCardTypes.contains(cardType.name.lowercased())
         }
 
         return true
