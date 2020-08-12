@@ -22,6 +22,7 @@ class State {
     var billingAddress: Address?
 
     var brands: Array<String>?
+    var orderId: String?
 
     fileprivate init() {
         // Private initialization to ensure just one instance is created.
@@ -39,5 +40,6 @@ class State {
         billingAddress = nil
 
         brands = nil
+        orderId = nil
     }
 }

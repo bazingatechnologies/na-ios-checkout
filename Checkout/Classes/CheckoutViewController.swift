@@ -17,6 +17,7 @@ import UIKit
  The required parameters are:
    amount: the amount you are going to charge the customer
    currency: the currency
+   orderId: the id of the order (bazinga! only)
  
  The optional parameters are:
    name: your company name
@@ -42,6 +43,7 @@ open class CheckoutViewController: UIViewController {
     
     @objc open var amount: NSDecimalNumber = NSDecimalNumber(value: 1.0 as Double)
     @objc open var currencyCode: String = "CAD"
+    @objc open var orderId: String = ""
     @objc open var name: String?
     @objc open var image: UIImage?
     @objc open var purchaseDescription: String?
@@ -91,6 +93,7 @@ open class CheckoutViewController: UIViewController {
         State.sharedInstance.processingClosure = self.processingClosure
         State.sharedInstance.billingAddressRequired = self.billingAddressRequired
         State.sharedInstance.brands = self.brands
+        State.sharedInstance.orderId = self.orderId
         
         self.headerView.backgroundColor = self.primaryColor
         

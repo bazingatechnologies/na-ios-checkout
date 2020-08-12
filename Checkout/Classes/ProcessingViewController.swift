@@ -106,10 +106,16 @@ class ProcessingViewController: UIViewController {
                                 cardInfo["nameOnCard"] = name as AnyObject
                                 cardInfo["surchargeToken"] = surchargeToken as AnyObject
                                 cardInfo["trustToken"] = trustToken as AnyObject
-                                if let processingClosure = State.sharedInstance.processingClosure {
-                                    processingClosure(cardInfo, nil)
+                                if let orderId = State.sharedInstance.orderId, orderId != "" {
+                                    cardInfo["orderId"] = orderId as AnyObject
+                                    if let processingClosure = State.sharedInstance.processingClosure {
+                                        processingClosure(cardInfo, nil)
+                                    }
+                                } else {
+                                    ProcessingViewController.processFailed(error: NSError(domain: "orderId is required", code: -1, userInfo: nil))
                                 }
                             }
+                            ProcessingViewController.makeNetworkActivityIndicator(visible: false)
                         }
                     }
                     let surchargeTokenTask = strongSelf.createToken(session, request as URLRequest, block)
