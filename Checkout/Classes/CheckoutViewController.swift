@@ -27,6 +27,7 @@ import UIKit
    billingAddress: if the billing address is required – true/false
    primaryColor: the primary header color of the form. Default is blue.
    brands: the valid brand list
+   shouldShowEmail: whether or not it should show the email field
  */
 open class CheckoutViewController: UIViewController {
     
@@ -51,6 +52,7 @@ open class CheckoutViewController: UIViewController {
     
     @objc open var shippingAddressRequired: Bool = true
     @objc open var billingAddressRequired: Bool = true
+    @objc open var shouldShowEmail: Bool = true
     @objc open var shippingAddress: Address?
     @objc open var billingAddress: Address?
     
@@ -94,6 +96,7 @@ open class CheckoutViewController: UIViewController {
         State.sharedInstance.billingAddressRequired = self.billingAddressRequired
         State.sharedInstance.brands = self.brands
         State.sharedInstance.orderId = self.orderId
+        State.sharedInstance.shouldShowEmail = self.shouldShowEmail
         
         self.headerView.backgroundColor = self.primaryColor
         

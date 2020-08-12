@@ -111,7 +111,9 @@ class PaymentViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var h = tableView.rowHeight
-        if indexPath.section == 1 {
+        if indexPath.section == 0 && !State.sharedInstance.shouldShowEmail {
+            h = 0
+        } else if indexPath.section == 1 {
             if indexPath.row == Row.spacer.rawValue {
                 h = 10
             }
@@ -326,7 +328,9 @@ class PaymentViewController: UITableViewController {
             if let textField = borderedCell.textField() {
                 textField.delegate = self
                 if let borderedView = textField.superview as? BorderedView {
-                    viewFields[borderedView] = textField
+                    if State.sharedInstance.shouldShowEmail {
+                        viewFields[borderedView] = textField
+                    }
                 }
             }
             if let imageView = borderedCell.embeddedImageView() {

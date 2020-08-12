@@ -23,6 +23,7 @@ class State {
 
     var brands: Array<String>?
     var orderId: String?
+    var shouldShowEmail: Bool = true
 
     fileprivate init() {
         // Private initialization to ensure just one instance is created.
@@ -41,5 +42,6 @@ class State {
 
         brands = nil
         orderId = nil
+        shouldShowEmail = true
     }
 }

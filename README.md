@@ -65,6 +65,7 @@ Adding Checkout to your app could not be easier. You simply use CocoaPods and ou
 The required parameters are:
 * amount: the amount you are going to charge the customer
 * currency: the currency
+* orderId: the id of the order (bazinga! only)
 
 The optional parameters are:
 * name: your company name
@@ -74,6 +75,8 @@ The optional parameters are:
 * shippingAddressRequired: if the shipping address is required - true/false
 * billingAddressRequired: if the billing address is required - true/false
 * processingClosure: the block of code to be executed after a token is received
+* brands: the valid brand list
+* shouldShowEmail: whether or not it should show the email field
 
 ### Step 1: Setup Dev Tools
 
