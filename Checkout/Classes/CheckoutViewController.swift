@@ -25,6 +25,7 @@ import UIKit
    shippingAddress: if the shipping address is required – true/false
    billingAddress: if the billing address is required – true/false
    primaryColor: the primary header color of the form. Default is blue.
+   brands: the valid brand list
  */
 open class CheckoutViewController: UIViewController {
     
@@ -44,6 +45,7 @@ open class CheckoutViewController: UIViewController {
     @objc open var name: String?
     @objc open var image: UIImage?
     @objc open var purchaseDescription: String?
+    @objc open var brands: Array<String>?
     
     @objc open var shippingAddressRequired: Bool = true
     @objc open var billingAddressRequired: Bool = true
@@ -88,6 +90,7 @@ open class CheckoutViewController: UIViewController {
         State.sharedInstance.amountStr = CheckoutViewController.localizedCurrencyAmount(self.amount, currencyCode: self.currencyCode)
         State.sharedInstance.processingClosure = self.processingClosure
         State.sharedInstance.billingAddressRequired = self.billingAddressRequired
+        State.sharedInstance.brands = self.brands
         
         self.headerView.backgroundColor = self.primaryColor
         

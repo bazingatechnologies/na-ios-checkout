@@ -21,6 +21,10 @@ public enum CardType: Int {
     case dinersClub
     case jcb
     case invalidCard
+
+    var name: String {
+        get { return String(describing: self) }
+    }
 }
 
 class CreditCardValidator {
@@ -48,14 +52,15 @@ class CreditCardValidator {
     // - Has a valid number of digits.
     // - Appears to potentially look valid.
     // - Is definitely Luhn valid.
+    // - If the card is in the list of acceptable cards
     //
-    func validate(_ cardNumber: String) -> Bool {
+    func validate(_ cardNumber: String, _ validCardTypes: Array<String>?) -> Bool {
         let cardType = self.cardType(cardNumber)
         if cardType != .invalidCard {
             let cleanCard = cardNumber.replacingOccurrences(of: " ", with: "")
             let len = self.lengthOfStringForType(cardType)
             if len == cleanCard.count {
-                if self.isValidNumber(cardNumber) && self.isLuhnValid(cardNumber) {
+                if self.isValidNumber(cardNumber) && self.isLuhnValid(cardNumber) && self.isValidCardType(cardType, validCardTypes) {
                     return true
                 }
             }
@@ -102,7 +107,15 @@ class CreditCardValidator {
         return .invalidCard
     }
 
-    func isValidNumber(_ cardNumber: String) -> Bool {
+    fileprivate func isValidCardType(_ cardType: CardType, _ validCardTypes: Array<String>?) -> Bool {
+        if let allValidCardTypes = validCardTypes {
+            return allValidCardTypes.contains(cardType.name)
+        }
+
+        return true
+    }
+
+    fileprivate func isValidNumber(_ cardNumber: String) -> Bool {
         let ccnumber = cardNumber.replacingOccurrences(of: " ", with: "")
         var regex: String
         
@@ -133,7 +146,7 @@ class CreditCardValidator {
         return false
     }
     
-    func isLuhnValid(_ cardNumber: String) -> Bool {
+    fileprivate func isLuhnValid(_ cardNumber: String) -> Bool {
         var ccnumber = cardNumber.replacingOccurrences(of: " ", with: "")
         ccnumber = String(ccnumber.reversed())
         

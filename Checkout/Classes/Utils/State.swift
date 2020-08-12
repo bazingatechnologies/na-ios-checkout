@@ -21,6 +21,8 @@ class State {
     var billingAddressRequired: Bool = true
     var billingAddress: Address?
 
+    var brands: Array<String>?
+
     fileprivate init() {
         // Private initialization to ensure just one instance is created.
     }
@@ -35,5 +37,7 @@ class State {
         
         billingAddressRequired = true
         billingAddress = nil
+
+        brands = nil
     }
 }
