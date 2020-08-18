@@ -168,7 +168,7 @@ class PaymentViewController: UITableViewController {
         
         if indexPath.section == 0 {
             cell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath)
-            if let borderedCell = self.setupBorderedCell(cell) {
+            if let borderedCell = self.setupBorderedCell(cell, State.sharedInstance.shouldShowEmail) {
                 borderedCell.drawTop(true) // needed for any row where a bordered row is not directly on top
                 if let textField = borderedCell.textField() {
                     self.emailTextField = textField
@@ -182,7 +182,7 @@ class PaymentViewController: UITableViewController {
                 switch row {
                 case Row.name:
                     cell = tableView.dequeueReusableCell(withIdentifier: "nameCell", for: indexPath)
-                    if let borderedCell = self.setupBorderedCell(cell) {
+                    if let borderedCell = self.setupBorderedCell(cell, true) {
                         borderedCell.drawTop(true)
                         if let textField = borderedCell.textField() {
                             self.nameTextField = textField
@@ -193,7 +193,7 @@ class PaymentViewController: UITableViewController {
                     
                 case Row.card:
                     cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath)
-                    if let borderedCell = self.setupBorderedCell(cell) {
+                    if let borderedCell = self.setupBorderedCell(cell, true) {
                         if let textField = borderedCell.textField() {
                             self.cardTextField = textField
                             textField.addTarget(self, action: #selector(reformatAsCardNumber(_:)), for: .editingChanged)
@@ -323,12 +323,12 @@ class PaymentViewController: UITableViewController {
         return cell
     }
 
-    fileprivate func setupBorderedCell(_ cell: UITableViewCell) -> BorderedViewCell? {
+    fileprivate func setupBorderedCell(_ cell: UITableViewCell, _ shouldAddAsViewField: Bool) -> BorderedViewCell? {
         if let borderedCell = cell as? BorderedViewCell {
             if let textField = borderedCell.textField() {
                 textField.delegate = self
                 if let borderedView = textField.superview as? BorderedView {
-                    if State.sharedInstance.shouldShowEmail {
+                    if shouldAddAsViewField {
                         viewFields[borderedView] = textField
                     }
                 }
