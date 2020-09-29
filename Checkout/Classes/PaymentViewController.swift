@@ -332,6 +332,7 @@ class PaymentViewController: UITableViewController {
                         viewFields[borderedView] = textField
                     }
                 }
+                self.setupForegroundColorFor(textField)
             }
             if let imageView = borderedCell.embeddedImageView() {
                 imageView.tintColor = UIColor.lightGray
@@ -349,6 +350,7 @@ class PaymentViewController: UITableViewController {
                 if let borderedView = textField.superview as? BorderedView {
                     viewFields[borderedView] = textField
                 }
+                self.setupForegroundColorFor(textField)
             }
             
             if let imageView = dualBorderedCell.embeddedImageView(.left) {
@@ -360,6 +362,7 @@ class PaymentViewController: UITableViewController {
                 if let borderedView = textField.superview as? BorderedView {
                     viewFields[borderedView] = textField
                 }
+                self.setupForegroundColorFor(textField)
             }
             
             if let imageView = dualBorderedCell.embeddedImageView(.right) {
@@ -370,6 +373,17 @@ class PaymentViewController: UITableViewController {
         }
         
         return nil
+    }
+
+    fileprivate func setupForegroundColorFor(_ tf: UITextField) -> Void {
+        if let color = State.sharedInstance.placeholderColor {
+            let placeholderColor = color.withAlphaComponent(0.5)
+            let attrStr = NSAttributedString(string: tf.placeholder!, attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            tf.attributedPlaceholder = attrStr
+        }
+        if let color = State.sharedInstance.textColor {
+            tf.textColor = color
+        }
     }
     
     fileprivate func validateTextFields() -> Bool {

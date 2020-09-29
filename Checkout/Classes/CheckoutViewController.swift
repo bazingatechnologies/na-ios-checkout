@@ -28,6 +28,8 @@ import UIKit
    primaryColor: the primary header color of the form. Default is blue.
    brands: the valid brand list
    shouldShowEmail: whether or not it should show the email field
+   textColor: Set a color for the text. Default color becomes transparent in dark mode.
+   placeholderColor: Set a color for the placeholder. Default color becomes transparent in dark mode.
  */
 open class CheckoutViewController: UIViewController {
     
@@ -49,6 +51,8 @@ open class CheckoutViewController: UIViewController {
     @objc open var image: UIImage?
     @objc open var purchaseDescription: String?
     @objc open var brands: Array<String>?
+    @objc open var placeholderColor: UIColor? = UIColor.black
+    @objc open var textColor: UIColor? = UIColor.orange
     
     @objc open var shippingAddressRequired: Bool = true
     @objc open var billingAddressRequired: Bool = true
@@ -97,6 +101,8 @@ open class CheckoutViewController: UIViewController {
         State.sharedInstance.brands = self.brands
         State.sharedInstance.orderId = self.orderId
         State.sharedInstance.shouldShowEmail = self.shouldShowEmail
+        State.sharedInstance.placeholderColor = self.placeholderColor
+        State.sharedInstance.textColor = self.textColor
         
         self.headerView.backgroundColor = self.primaryColor
         

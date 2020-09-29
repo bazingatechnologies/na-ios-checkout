@@ -221,6 +221,7 @@ class AddressViewController: UITableViewController {
                 if let borderedView = textField.superview as? BorderedView {
                     viewFields[borderedView] = textField
                 }
+                self.setupForegroundColorFor(textField)
                 self.keyedFields[key] = textField
                 textField.tag = tag
             }
@@ -237,6 +238,7 @@ class AddressViewController: UITableViewController {
                 if let borderedView = textField.superview as? BorderedView {
                     viewFields[borderedView] = textField
                 }
+                self.setupForegroundColorFor(textField)
                 self.keyedFields[leftKey] = textField
                 textField.tag = leftTag
             }
@@ -245,6 +247,7 @@ class AddressViewController: UITableViewController {
                 if let borderedView = textField.superview as? BorderedView {
                     viewFields[borderedView] = textField
                 }
+                self.setupForegroundColorFor(textField)
                 self.keyedFields[rightKey] = textField
                 textField.tag = rightTag
             }
@@ -252,6 +255,17 @@ class AddressViewController: UITableViewController {
         }
         
         return nil
+    }
+
+    fileprivate func setupForegroundColorFor(_ tf: UITextField) -> Void {
+        if let color = State.sharedInstance.placeholderColor {
+            let placeholderColor = color.withAlphaComponent(0.5)
+            let attrStr = NSAttributedString(string: tf.placeholder!, attributes: [NSAttributedString.Key.foregroundColor : placeholderColor])
+            tf.attributedPlaceholder = attrStr
+        }
+        if let color = State.sharedInstance.textColor {
+            tf.textColor = color
+        }
     }
 
     fileprivate func validateTextFields() -> Bool {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 class State {
     
@@ -24,6 +25,8 @@ class State {
     var brands: Array<String>?
     var orderId: String?
     var shouldShowEmail: Bool = true
+    var placeholderColor: UIColor?
+    var textColor: UIColor?
 
     fileprivate init() {
         // Private initialization to ensure just one instance is created.
@@ -43,5 +46,8 @@ class State {
         brands = nil
         orderId = nil
         shouldShowEmail = true
+
+        placeholderColor = nil
+        textColor = nil
     }
 }

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yey-vZ-PhZ">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="yey-vZ-PhZ">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fdw-xo-iNN">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="-20" width="375" height="120"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_toys_black_48dp" translatesAutoresizingMaskIntoConstraints="NO" id="ied-Hv-smX">
                                         <rect key="frame" x="40" y="30" width="60" height="60"/>
@@ -128,7 +124,7 @@
                                 </variation>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YkQ-FS-5uj">
-                                <rect key="frame" x="20" y="128" width="335" height="495"/>
+                                <rect key="frame" x="20" y="108" width="335" height="515"/>
                                 <connections>
                                     <segue destination="EiE-KN-dk0" kind="embed" identifier="navController" id="9Sn-Ho-NZs"/>
                                 </connections>
@@ -209,29 +205,29 @@
                         <viewControllerLayoutGuide type="bottom" id="iGZ-wC-v9E"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="9rj-KB-TZu">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="495"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="515"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HlH-Fa-bRi">
-                                <rect key="frame" x="-4" y="64" width="343" height="311"/>
+                                <rect key="frame" x="-4" y="44" width="343" height="351"/>
                                 <subviews>
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="3nY-r9-AGo">
-                                        <rect key="frame" x="161.5" y="145.5" width="20" height="20"/>
+                                        <rect key="frame" x="161.5" y="165.5" width="20" height="20"/>
                                     </activityIndicatorView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="processing" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7H6-Ek-tfW">
-                                        <rect key="frame" x="20" y="173.5" width="303" height="36"/>
+                                        <rect key="frame" x="20" y="193.5" width="303" height="36"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3hC-pI-fsa">
-                                        <rect key="frame" x="20" y="94.5" width="303" height="43"/>
+                                        <rect key="frame" x="20" y="114.5" width="303" height="43"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="payment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rr0-rc-Gox">
-                                        <rect key="frame" x="20" y="50.5" width="303" height="36"/>
+                                        <rect key="frame" x="20" y="70.5" width="303" height="36"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -267,7 +263,7 @@
                                 </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="prc-8S-a0a">
-                                <rect key="frame" x="-4" y="375" width="343" height="120"/>
+                                <rect key="frame" x="-4" y="395" width="343" height="120"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_verified_user_black_48dp" translatesAutoresizingMaskIntoConstraints="NO" id="CNt-7y-ZZu">
                                         <rect key="frame" x="147.5" y="21" width="48" height="48"/>
@@ -339,7 +335,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="AddressViewController" title="Shipping" id="xtv-gs-FVv" customClass="AddressViewController" customModule="Checkout" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="kcb-xv-HPR">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="495"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="515"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -352,10 +348,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3Q-dt-dr7" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RoD-L7-kbA">
-                                                    <rect key="frame" x="8" y="1" width="319" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="319" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 </textField>
@@ -393,10 +389,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baV-Hl-Tsi" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="street address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zpU-o6-z43">
-                                                    <rect key="frame" x="8" y="1" width="319" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="319" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 </textField>
@@ -434,10 +430,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfe-FV-deX" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="zip" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lKw-kx-ml6">
-                                                    <rect key="frame" x="8" y="1" width="151.5" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="151.5" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 </textField>
@@ -459,10 +455,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EgT-ZR-GWF" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="167.5" y="0.0" width="167.5" height="44"/>
+                                            <rect key="frame" x="167.5" y="0.0" width="159.5" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Yf-h5-FJg">
-                                                    <rect key="frame" x="8" y="1" width="151.5" height="42"/>
+                                                    <rect key="frame" x="8" y="1" width="143.5" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 </textField>
@@ -504,10 +500,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3qx-Ib-U5t" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="province" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6fW-2n-D84">
-                                                    <rect key="frame" x="8" y="1" width="151.5" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="151.5" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 </textField>
@@ -529,10 +525,10 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QXm-uM-gr9" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="167.5" y="0.0" width="167.5" height="44"/>
+                                            <rect key="frame" x="167.5" y="0.0" width="159.5" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="country" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="afe-tQ-4Om">
-                                                    <rect key="frame" x="8" y="1" width="151.5" height="42"/>
+                                                    <rect key="frame" x="8" y="1" width="143.5" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done"/>
                                                 </textField>
@@ -574,7 +570,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kCW-vC-Mvx">
-                                            <rect key="frame" x="0.0" y="6" width="51" height="31"/>
+                                            <rect key="frame" x="0.0" y="6.5" width="51" height="31"/>
                                         </switch>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Billing address is same as shipping" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.25" translatesAutoresizingMaskIntoConstraints="NO" id="ssn-ZY-hL5">
                                             <rect key="frame" x="69" y="13.5" width="266" height="17"/>
@@ -606,7 +602,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BILLING ADDRESS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="msH-CV-q83">
-                                                    <rect key="frame" x="8" y="11" width="319" height="21"/>
+                                                    <rect key="frame" x="8" y="11.5" width="319" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -659,7 +655,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="PaymentViewController" title="Payment" id="Wzw-lC-oKO" customClass="PaymentViewController" customModule="Checkout" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="JIV-Td-nfV">
-                        <rect key="frame" x="0.0" y="0.0" width="335" height="495"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="515"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
@@ -671,10 +667,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eGm-tO-CQA" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7OT-PU-KWN">
-                                                    <rect key="frame" x="8" y="1" width="319" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="319" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                                 </textField>
@@ -712,10 +708,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hmg-BO-EZH" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fER-v9-gxN">
-                                                    <rect key="frame" x="8" y="1" width="319" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="319" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 </textField>
@@ -753,10 +749,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hio-KG-6HD" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="335" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="card number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nqH-79-hy9">
-                                                    <rect key="frame" x="8" y="1" width="287" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="287" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next"/>
                                                 </textField>
@@ -804,10 +800,10 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMg-8W-2LY" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="167.5" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="expiry mm/yy" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kf9-fo-QXQ">
-                                                    <rect key="frame" x="8" y="1" width="119.5" height="41.5"/>
+                                                    <rect key="frame" x="8" y="1" width="119.5" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="next"/>
                                                 </textField>
@@ -840,15 +836,15 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmM-ed-NHb" customClass="BorderedView" customModule="Checkout" customModuleProvider="target">
-                                            <rect key="frame" x="167.5" y="0.0" width="167.5" height="44"/>
+                                            <rect key="frame" x="167.5" y="0.0" width="159.5" height="44"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="cvv" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vid-AX-afl">
-                                                    <rect key="frame" x="8" y="1" width="119.5" height="42"/>
+                                                    <rect key="frame" x="8" y="1" width="111.5" height="42"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done"/>
                                                 </textField>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_lock_outline_black_48dp" highlightedImage="cvc_hint_color" translatesAutoresizingMaskIntoConstraints="NO" id="LC3-g2-JeV">
-                                                    <rect key="frame" x="135.5" y="10" width="24" height="24"/>
+                                                    <rect key="frame" x="127.5" y="10" width="24" height="24"/>
                                                     <color key="tintColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="11D-cw-dK8"/>
@@ -900,7 +896,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pay" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOw-cB-b20">
-                                                    <rect key="frame" x="8" y="11" width="319" height="21"/>
+                                                    <rect key="frame" x="8" y="11.5" width="319" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -952,7 +948,7 @@
             <objects>
                 <navigationController id="EiE-KN-dk0" customClass="NavigationController" customModule="Checkout" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pas-07-OZG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="335" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
